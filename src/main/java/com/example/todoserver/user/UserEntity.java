@@ -18,7 +18,6 @@ public class UserEntity extends BaseEntity {
     String username;
     String password;
     String email;
-    String name;
 
     @OneToMany
     List<TodoEntity> todoEntities;
