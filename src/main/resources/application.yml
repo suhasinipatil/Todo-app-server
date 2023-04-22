@@ -1,0 +1,16 @@
+server:
+  port: 8889
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/todo
+    driver-class-name: org.postgresql.Driver
+    username: todo_user
+    password: todo_password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
