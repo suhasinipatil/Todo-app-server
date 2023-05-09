@@ -17,9 +17,9 @@ public class TodoEntity extends BaseEntity {
     @Column(nullable = false, length = 200)
     String title;
 
-  //  @ManyToOne(mappedBy = "todoEntityList")
+    //@ManyToOne
    // UserEntity user;
 
-    @Column(nullable = true)
-    Date dueDate;
+    boolean completed = false;
+
 }

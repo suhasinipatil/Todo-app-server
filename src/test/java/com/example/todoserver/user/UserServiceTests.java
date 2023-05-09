@@ -34,4 +34,11 @@ public class UserServiceTests {
         var savedUser = getUserService().createUser(createUserDTO);
         assertNotNull(savedUser);
     }
+
+    @Test
+    public void getAllUsers(){
+
+        var savedUser = getUserService().getAllUsers();
+        assertNotNull(savedUser);
+    }
 }
