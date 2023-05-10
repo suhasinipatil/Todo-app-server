@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -21,4 +22,5 @@ public class UserEntity extends BaseEntity {
 
     @OneToMany
     List<TodoEntity> todoEntities;
+
 }

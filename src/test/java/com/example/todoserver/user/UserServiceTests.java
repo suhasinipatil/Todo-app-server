@@ -13,8 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class UserServiceTests {
     @Autowired
     private UserRepository userRepository;
-
-
     private UserService userService;
 
     private UserService getUserService(){
@@ -40,5 +38,27 @@ public class UserServiceTests {
 
         var savedUser = getUserService().getAllUsers();
         assertNotNull(savedUser);
+    }
+
+    @Test
+    public void findByUsername() {
+        CreateUserDTO createUserDTO = new CreateUserDTO();
+        createUserDTO.setUsername("abc");
+        createUserDTO.setPassword("abc");
+        createUserDTO.setEmail("abc@gmail.com");
+        var savedUser = getUserService().createUser(createUserDTO);
+    }
+
+    @Test
+    public void addTodoEntityByUserId(){
+        CreateUserDTO createUserDTO = new CreateUserDTO();
+        createUserDTO.setUsername("abc");
+        createUserDTO.setPassword("abc");
+        createUserDTO.setEmail("abc@gmail.com");
+        var savedUser = getUserService().createUser(createUserDTO);
+        assertNotNull(savedUser);
+
+        getUserService().addTodoEntityByUserId(savedUser.getId(), 1);
+
     }
 }

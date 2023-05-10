@@ -1,5 +1,6 @@
 package com.example.todoserver.user;
 
+
 import com.example.todoserver.todo.TodoEntity;
 import com.example.todoserver.user.dto.CreateUserDTO;
 import com.example.todoserver.user.dto.UserResponseDTO;
@@ -15,6 +16,7 @@ public class UserService {
 
     public UserService(UserRepository userRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
+        //this.userTodoRepository = userTodoRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -31,9 +33,15 @@ public class UserService {
 
     //add todo for the given userid
     public void addTodoEntityByUserId(Integer userId, Integer todoId) {
-        var userEntity = userRepository.findById(userId).orElseThrow();
-        userRepository.addTodoEntityByUserId(userId, todoId);
-        userRepository.save(userEntity);
+        var userEntity = userRepository.findById(userId);
+        if(userEntity.isPresent()){
+            userRepository.addTodoEntityByUserId(userId, todoId);
+        }
+    }
+
+    public UserEntity findByUsername(String username) {
+        var userEntity = userRepository.findByUsername(username);
+        return userEntity;
     }
 
     public List<UserEntity> getAllUsers() {

@@ -6,6 +6,9 @@ import com.example.todoserver.user.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TodoService {
     private final TodoRepository todoRepository;
@@ -26,4 +29,14 @@ public class TodoService {
         var responseTodo = modelMapper.map(savedTodo, ResponseTodoDTO.class);
         return responseTodo;
      }
+
+    public List<ResponseTodoDTO> findAllTodoEntitiesByUserId(Integer userId) {
+        var todoEntities = todoRepository.findTodosByUserId(userId);
+        List<ResponseTodoDTO> responseTodoDTOList = new ArrayList<>();
+        for (TodoEntity todoEntity : todoEntities) {
+            var responseTodo = modelMapper.map(todoEntity, ResponseTodoDTO.class);
+            responseTodoDTOList.add(responseTodo);
+        }
+        return responseTodoDTOList;
+    }
 }

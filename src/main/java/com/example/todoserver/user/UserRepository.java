@@ -1,20 +1,30 @@
 package com.example.todoserver.user;
 
-import com.example.todoserver.todo.TodoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     UserEntity findByUsername(String username);
 
-    List<TodoEntity> findAllTodoEntitiesByUsername(String username);
+    Optional<UserEntity> findById(Integer id);
 
-    //insert in users_todo_entities
-    @Query(value = "insert into users_todo_entities (user_id, todo_id) values (?1, ?2)", nativeQuery = true)
+
+
+   /* //get all users todo entities for given user id
+    @Query(value = "SELECT * FROM users_todo_entities WHERE users_id = :userId", nativeQuery = true)
+    List<UserTodoEntity> findAllTodoEntitiesByUserId(Integer userId);*/
+
+    @Transactional
+    @Modifying
+    @Query(value = "INSERT INTO users_todo_entities (users_id, todo_entities_id) VALUES (:userId, :todoId)", nativeQuery = true)
     void addTodoEntityByUserId(Integer userId, Integer todoId);
+
+
 }
