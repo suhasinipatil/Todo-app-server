@@ -25,6 +25,7 @@ public class TodoService {
      public ResponseTodoDTO create(createTodoDTO todoEntity) {
         var todo = modelMapper.map(todoEntity, TodoEntity.class);
         var savedTodo =  todoRepository.save(todo);
+        System.out.println("todoEntity.userId " + todoEntity.getUserId() + " savedTodo.id " + savedTodo.getId());
         userService.addTodoEntityByUserId(todoEntity.getUserId(), savedTodo.getId());
         var responseTodo = modelMapper.map(savedTodo, ResponseTodoDTO.class);
         return responseTodo;

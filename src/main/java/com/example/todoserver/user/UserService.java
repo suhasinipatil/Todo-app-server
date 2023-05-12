@@ -23,7 +23,9 @@ public class UserService {
     public UserResponseDTO createUser(CreateUserDTO createUserDTO){
         var userEntity = userRepository.findByUsername(createUserDTO.getUsername());
         if(userEntity != null){
-            throw new UserAlreadyExistsException(createUserDTO.getUsername());
+            //throw new UserAlreadyExistsException(createUserDTO.getUsername());
+            var userResponseDto = modelMapper.map(userEntity, UserResponseDTO.class);
+            return userResponseDto;
         }
         var newUserEntity = modelMapper.map(createUserDTO, UserEntity.class);
         var savedUser = userRepository.save(newUserEntity);

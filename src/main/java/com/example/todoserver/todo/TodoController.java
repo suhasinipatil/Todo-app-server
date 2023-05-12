@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class TodoController {
 
     private final TodoService todoService;
@@ -18,7 +19,8 @@ public class TodoController {
 
      @PostMapping("/todos")
      public ResponseEntity<ResponseTodoDTO> create(@RequestBody createTodoDTO todoEntity) {
-        return ResponseEntity.ok(todoService.create(todoEntity));
+        System.out.println("Controller " + todoEntity.getUserId());
+        return ResponseEntity.created(null).body(todoService.create(todoEntity));
      }
 
      @GetMapping("/todos/{userId}")
