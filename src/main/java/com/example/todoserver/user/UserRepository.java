@@ -15,12 +15,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     Optional<UserEntity> findById(Integer id);
 
-
-
-   /* //get all users todo entities for given user id
-    @Query(value = "SELECT * FROM users_todo_entities WHERE users_id = :userId", nativeQuery = true)
-    List<UserTodoEntity> findAllTodoEntitiesByUserId(Integer userId);*/
-
     @Transactional
     @Modifying
     @Query(value = "INSERT INTO users_todo_entities (users_id, todo_entities_id) VALUES (:userId, :todoId)", nativeQuery = true)
