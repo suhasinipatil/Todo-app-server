@@ -93,7 +93,7 @@ public class TodoServiceTests {
         var savedTodo = getTodoService().create(createTodoDTO);
         assertNotNull(savedTodo);
 
-        var updatedTodo = getTodoService().updateTodoEntity(savedTodo.getId(), "def");
+        var updatedTodo = getTodoService().updateTodoEntity(savedTodo.getId(), createTodoDTO);
         assertNotNull(updatedTodo);
     }
 

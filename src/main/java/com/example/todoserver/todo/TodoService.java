@@ -42,12 +42,15 @@ public class TodoService {
         return responseTodoDTOList;
     }
 
-    public ResponseTodoDTO updateTodoEntity(Integer todoId, String todoName) {
+    public ResponseTodoDTO updateTodoEntity(Integer todoId, createTodoDTO todoDTO) {
         var todoEntity = findTodoEntityById(todoId);
         if(todoEntity == null) {
             return null;
         }
-        todoEntity.setTitle(todoName);
+        if(todoDTO.getTitle() != null)
+            todoEntity.setTitle(todoDTO.getTitle());
+        //if(todoDTO.isCompleted() != null)
+            todoEntity.setCompleted(todoDTO.isCompleted());
         var updatedTodo = todoRepository.save(todoEntity);
         var responseTodo = modelMapper.map(updatedTodo, ResponseTodoDTO.class);
         return responseTodo;

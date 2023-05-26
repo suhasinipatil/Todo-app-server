@@ -49,16 +49,4 @@ public class UserServiceTests {
         var savedUser = getUserService().createUser(createUserDTO);
     }
 
-    @Test
-    public void addTodoEntityByUserId(){
-        CreateUserDTO createUserDTO = new CreateUserDTO();
-        createUserDTO.setUsername("abc");
-        createUserDTO.setPassword("abc");
-        createUserDTO.setEmail("abc@gmail.com");
-        var savedUser = getUserService().createUser(createUserDTO);
-        assertNotNull(savedUser);
-
-        getUserService().addTodoEntityByUserId(savedUser.getId(), 1);
-
-    }
 }

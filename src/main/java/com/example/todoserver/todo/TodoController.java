@@ -2,7 +2,6 @@ package com.example.todoserver.todo;
 
 import com.example.todoserver.todo.dto.ResponseTodoDTO;
 import com.example.todoserver.todo.dto.createTodoDTO;
-import com.example.todoserver.todo.dto.TitleBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +29,9 @@ public class TodoController {
     }
 
     @PutMapping("/todos/{todoId}")
-    public ResponseEntity<ResponseTodoDTO> updateTodoEntity(@PathVariable Integer todoId, @RequestBody TitleBody title) {
-        System.out.println("Controller " + todoId + " " + title + " " + title.getTitle());
-        return ResponseEntity.ok(todoService.updateTodoEntity(todoId, title.getTitle()));
+    public ResponseEntity<ResponseTodoDTO> updateTodoEntity(@PathVariable Integer todoId, @RequestBody createTodoDTO todoDTO) {
+        //System.out.println("Controller " + todoId + " " + title + " " + title.getTitle());
+        return ResponseEntity.ok(todoService.updateTodoEntity(todoId, todoDTO));
     }
 
     @DeleteMapping("/todos/{todoId}")
