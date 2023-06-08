@@ -2,7 +2,7 @@ server:
   port: 8889
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/todo
+    url: jdbc:postgresql://google/todoapp-388214:us-central1:todopostgres?socketFactory=com.google.cloud.sql.postgres.SocketFactory&cloudSqlInstance=todoapp-388214:us-central1:todopostgres&useSSL=false
     driver-class-name: org.postgresql.Driver
     username: todo_user
     password: todo_password
